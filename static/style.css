@@ -1,0 +1,319 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Dynamic black background */
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(90, 84, 84, 0.5); /* Semi-transparent black background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(94, 90, 90, 0.2); /* White shadow for depth */
+}
+
+h1, h2 {
+    text-align: center;
+    color: #fff;
+}
+
+p {
+    color: #ccc;
+}
+
+/* Navigation Styles */
+nav {
+    background: linear-gradient(to right, #575252, #333); /* Gradient background */
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2); /* White shadow for depth */
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ccc;
+}
+
+/* Login Page Styles */
+.login {
+    background: linear-gradient(to right, #000, #333); /* Gradient background */
+    color: #fff;
+}
+
+.login-container {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* White shadow for depth */
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.login-form .form-group {
+    margin-bottom: 20px;
+}
+
+.login-form .form-group label {
+    display: block;
+    font-weight: bold;
+    color: #fff;
+}
+
+.login-form .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #555;
+    color: #fff;
+}
+
+.login-form .button-container {
+    text-align: center;
+}
+
+.login-form .button-container input[type="submit"] {
+    background: linear-gradient(to right, #000, #333); /* Gradient background */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-form .button-container input[type="submit"]:hover {
+    background: linear-gradient(to right, #333, #000); /* Gradient background */
+}
+
+/* Register Page Styles */
+.register {
+    background: linear-gradient(to right, #000, #333); /* Gradient background */
+    color: #121111;
+}
+
+.register-container {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* White shadow for depth */
+}
+
+.register-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.register-form .form-group {
+    margin-bottom: 20px;
+}
+
+.register-form .form-group label {
+    display: block;
+    font-weight: bold;
+    color: #100f0f;
+}
+
+.register-form .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #555;
+    color: #131212;
+}
+
+.register-form .button-container {
+    text-align: center;
+}
+
+.register-form .button-container input[type="submit"] {
+    background: linear-gradient(to right, #000, #333); /* Gradient background */
+    color: #100f0f;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.register-form .button-container input[type="submit"]:hover {
+    background: linear-gradient(to right, #333, #000); /* Gradient background */
+}
+
+/* Dashboard Page Styles */
+.dashboard {
+    background-color: #000; /* Dynamic black background */
+}
+
+.dashboard-container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(128, 125, 125, 0.5); /* Semi-transparent black background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(195, 189, 189, 0.2); /* White shadow for depth */
+}
+
+.dashboard-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.dashboard-details {
+    margin-bottom: 20px;
+}
+
+.dashboard-details p {
+    margin-bottom: 10px;
+}
+
+.dashboard-buttons {
+    text-align: center;
+}
+
+.dashboard-buttons a {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #000, #333); /* Gradient background */
+    color: #181717;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.dashboard-buttons a:hover {
+    background: linear-gradient(to right, #333, #000); /* Gradient background */
+}
+
+/* profile.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #161515;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background-color: #2e2d2d;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #ece2e2;
+}
+
+.profile-details {
+    margin-bottom: 20px;
+}
+
+.profile-details p {
+    margin-bottom: 10px;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.edit-profile-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-profile-btn:hover {
+    background-color: #0056b3;
+}
+
+/*edit profile*/
+
+body.edit-profile {
+    background-color: #000;
+    color: #fff;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+h2 {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    color: #fff;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #555;
+    color: #fff;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}

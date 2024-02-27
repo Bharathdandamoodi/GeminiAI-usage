@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Dashboard Page Styles */
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #222;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .dashboard-content {
+            background-color: #111;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .dashboard-content h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-content p {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .feature-boxes {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .feature-box {
+            flex: 1 0 300px;
+            padding: 20px;
+            background-color: #222;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-box h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .feature-box p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/settings">Settings</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="dashboard-content">
+            <h1>Welcome to Your Dashboard</h1>
+            <p>Explore and manage your data with ease.</p>
+            <div class="feature-boxes">
+                <div class="feature-box">
+                    <h2>Box 1</h2>
+                    <p>This is a description of box 1.</p>
+                    <a href="/chatbot" class="open-chatbot">Open Chatbot</a>
+                </div>
+                <div class="feature-box">
+                    <h2>Box 2</h2>
+                    <p>This is a description of box 2.</p>
+                    <a href="/eda" class="open-eda">Exploratory Data Analysis</a>
+                </div>
+                <div class="feature-box">
+                    <h2>Box 3</h2>
+                    <p>This is a description of box 3.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

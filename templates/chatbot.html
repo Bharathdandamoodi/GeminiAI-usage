@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .chat-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .chat-box {
+            height: 400px;
+            overflow-y: scroll;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        .chat-input {
+            width: calc(100% - 20px);
+            padding: 5px;
+            margin: 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            outline: none;
+        }
+        .chat-btn {
+            padding: 5px 10px;
+            margin: 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            outline: none;
+        }
+        .chat-message {
+            margin: 10px;
+            padding: 5px 10px;
+            border-radius: 3px;
+            background-color: #007bff;
+            color: #fff;
+            max-width: 70%;
+            word-wrap: break-word;
+            align-self: flex-end;
+        }
+        .reply-message {
+            margin: 10px;
+            padding: 5px 10px;
+            border-radius: 3px;
+            background-color: #f0f0f0;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+            <!-- Chat messages will be displayed here -->
+        </div>
+        <input type="text" class="chat-input" id="message-input" placeholder="Type your message...">
+        <button class="chat-btn" onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        async function sendMessage() {
+            var messageInput = document.getElementById("message-input");
+            var message = messageInput.value.trim();
+            if (message !== "") {
+                addMessageToChat("You", message);
+                messageInput.value = "";
+                try {
+                    const response = await fetch('/send_message', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: 'message=' + encodeURIComponent(message),
+                    });
+                    const data = await response.json();
+                    const responseText = data.bot_response;  // Get bot response from JSON
+                    addMessageToChat("Chatbot", responseText);
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+        }
+        
+
+        function addMessageToChat(sender, message) {
+            var chatBox = document.getElementById("chat-box");
+            var messageElement = document.createElement("div");
+            messageElement.className = sender === "You" ? "chat-message" : "reply-message";
+            messageElement.innerText = sender + ": " + message;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+        }
+    </script>
+</body>
+</html>

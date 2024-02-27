@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>User Profile</h2>
+        <div class="profile-details">
+            <p><strong>Username:</strong> {{ user_info.username }}</p>
+            <p><strong>Name:</strong> {{ user_info.name }}</p>
+            <p><strong>Email:</strong> {{ user_info.email }}</p>
+            <p><strong>College:</strong> {{ user_info.college }}</p>
+            <p><strong>Class:</strong> {{ user_info.class }}</p>
+            <p><strong>Roll No:</strong> {{ user_info.roll_no }}</p>
+            <p><strong>Blood Group:</strong> {{ user_info.blood_group }}</p>
+            <p><strong>Phone Number:</strong> {{ user_info.phone_number }}</p>
+            <p><strong>Address:</strong> {{ user_info.address }}</p>
+            <p><strong>Date of Birth:</strong> {{ user_info.date_of_birth }}</p>
+            <p><strong>Parent Details:</strong> {{ user_info.parent_details }}</p>
+        </div>
+        <div class="button-container">
+            <a href="{{ url_for('edit_profile') }}" class="edit-profile-btn">Edit Profile</a>
+        </div>
+    </div>
+</body>
+</html>

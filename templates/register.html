@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a; /* Black background */
+            color: #fff; /* Light text color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .register-container {
+            background-color: #333; /* Dark background */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            margin: auto;
+            box-sizing: border-box;
+        }
+        
+        h2 {
+            text-align: center;
+            color: #fff;
+        }
+        
+        form {
+            margin-top: 20px;
+        }
+        
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #ccc; /* Light text color */
+        }
+        
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #666; /* Dark border */
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: #444; /* Dark background */
+            color: #fff; /* Light text color */
+        }
+        
+        button[type="submit"] {
+            background-color: #007bff; /* Blue submit button */
+            color: #fff; /* Light text color */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Register</h2>
+        <form method="POST" action="{{ url_for('register') }}">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="college">College:</label>
+            <input type="text" id="college" name="college" required>
+            <label for="class">Class:</label>
+            <input type="text" id="class" name="class" required>
+            <label for="roll_no">Roll No:</label>
+            <input type="text" id="roll_no" name="roll_no" required>
+            <label for="blood_group">Blood Group:</label>
+            <input type="text" id="blood_group" name="blood_group" required>
+            <label for="phone_number">Phone Number:</label>
+            <input type="tel" id="phone_number" name="phone_number" required>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+            <label for="date_of_birth">Date of Birth:</label>
+            <input type="date" id="date_of_birth" name="date_of_birth" required>
+            <label for="parent_details">Parent Details:</label>
+            <input type="text" id="parent_details" name="parent_details" required>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+</html>

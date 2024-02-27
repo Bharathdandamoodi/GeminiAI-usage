@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>Exploratory Data Analysis</h1>
+    <form method="post" action="{{ url_for('eda') }}" enctype="multipart/form-data">
+        <label for="file">Upload Excel File:</label>
+        <input type="file" name="file" id="file" required>
+        <br>
+        <label for="x_variable">X Variable:</label>
+        <input type="text" name="x_variable" id="x_variable" required>
+        <br>
+        <label for="y_variable">Y Variable:</label>
+        <input type="text" name="y_variable" id="y_variable" required>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
