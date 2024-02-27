@@ -11,7 +11,7 @@ from chatbot import ChatBot
 
 # Initialize Flask app
 app = Flask(__name__)
-app.secret_key = 'IzaSyB6bQY2PYnlwcmBhKnAWc59i1KNwuhLGX8'
+app.secret_key = 'This is key for python leave it likt this'
 
 
 # app = Flask(__name__)
