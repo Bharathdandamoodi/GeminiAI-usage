@@ -92,6 +92,21 @@
         .feature-box p {
             font-size: 16px;
         }
+
+        /* Button styles */
+        .feature-box a {
+            display: inline-block;
+            background-color: #007bff; /* Blue color */
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .feature-box a:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
     </style>
 </head>
 <body>
@@ -111,18 +126,19 @@
             <p>Explore and manage your data with ease.</p>
             <div class="feature-boxes">
                 <div class="feature-box">
-                    <h2>Box 1</h2>
-                    <p>This is a description of box 1.</p>
+                    <h2>CHATBOT</h2>
+                    <p>Chatbot using GEMINI-API key.</p>
                     <a href="/chatbot" class="open-chatbot">Open Chatbot</a>
                 </div>
                 <div class="feature-box">
-                    <h2>Box 2</h2>
-                    <p>This is a description of box 2.</p>
-                    <a href="/eda" class="open-eda">Exploratory Data Analysis</a>
+                    <h2>EDA</h2>
+                    <p>Exploratory Data Analysis.</p>
+                    <a href="/eda" class="open-eda">Open Exploratory Data Analysis</a>
                 </div>
                 <div class="feature-box">
-                    <h2>Box 3</h2>
-                    <p>This is a description of box 3.</p>
+                    <h2>GPA</h2>
+                    <p>Calculate tour CGPA and SGPA</p>
+                    <a href="/gpa" class="open-gpa">Open GPA Calculator</a>
                 </div>
             </div>
         </div>
