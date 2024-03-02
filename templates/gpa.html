@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <style>
+        body {
+            background-color: #111; /* Light black background for the body */
+            font-family: Arial, sans-serif; /* Specify a font */
+            color: #fff; /* Text color */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto; /* Adjusted margin to center the container */
+            padding: 20px;
+            background-color: #222; /* Darker background color */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a slight shadow */
+        }
+
+        .semester-block {
+            margin-bottom: 20px;
+            position: relative; /* Make position relative for positioning delete button */
+            background-color: #333; /* Background color of the semester block */
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* Allow content to wrap within the semester block */
+        }
+
+        .semester-block h2 {
+            margin-bottom: 10px;
+            margin-left: 10px; /* Adjusted margin to the left */
+        }
+
+        .delete-btn {
+            background-color: #e74c3c; /* Red color for delete button */
+            color: #fff; /* White text color */
+            border: none;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            border-radius: 50%;
+        }
+
+        .delete-btn:hover {
+            background-color: #c0392b; /* Darker red color on hover */
+        }
+
+        .semester-content {
+            width: calc(100% - 40px);
+        }
+
+        input[type="text"] {
+            width: calc(100% - 50px); /* Adjust width for delete button */
+            margin-bottom: 5px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding-right: 30px; /* Adjust right padding to accommodate delete button */
+        }
+
+        button.add-subject-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button.add-subject-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .completed-button {
+            margin-top: 20px; /* Increased margin for spacing */
+            text-align: center; /* Center align the button */
+        }
+
+        .completed-button button {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px; /* Increased padding for larger size */
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: none;
+        }
+
+        .completed-button button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Grade Calculator</h1>
+        <form id="grade-form" method="POST" action="/">
+            <div id="semesters-container">
+                <!-- Semesters will be added dynamically here -->
+            </div>
+            <input type="hidden" name="num_semesters" value="0" id="num-semesters-input">  <!-- Hidden input for the number of semesters -->
+            <button id="add-semester-button" type="button" onclick="addSemester()">Add Semester</button>
+            <div class="completed-button">
+                <button type="submit">Calculate</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        var maxSemesters = 8;  // Maximum number of semesters allowed
+
+        function addSemester() {
+            var semestersContainer = document.getElementById('semesters-container');
+            var numSemestersInput = document.getElementById('num-semesters-input');
+
+            if (semestersContainer.children.length < maxSemesters) {
+                // Create a new div for the semester
+                var semesterDiv = document.createElement('div');
+                semesterDiv.className = 'semester-block';
+
+                // Add the semester number
+                var semesterNumber = semestersContainer.children.length + 1;
+                semesterDiv.innerHTML = '<h2>Semester ' + semesterNumber + '</h2>';
+                
+                // Create a div for subjects in the semester
+                var subjectsDiv = document.createElement('div');
+                subjectsDiv.className = 'subjects-container';
+                semesterDiv.appendChild(subjectsDiv);
+
+                // Create a button to add subjects
+                var addSubjectsButton = document.createElement('button');
+                addSubjectsButton.type = 'button';
+                addSubjectsButton.textContent = 'Add Subject';
+                addSubjectsButton.className = 'add-subject-button';
+                addSubjectsButton.onclick = function () {
+                    addSubject(subjectsDiv, semesterNumber);
+                };
+                semesterDiv.appendChild(addSubjectsButton);
+
+                // Create delete semester button
+                var deleteSemesterButton = document.createElement('button');
+                deleteSemesterButton.type = 'button';
+                deleteSemesterButton.className = 'delete-btn';
+                deleteSemesterButton.textContent = 'X';
+                deleteSemesterButton.onclick = function () {
+                    semestersContainer.removeChild(semesterDiv);
+                    updateSemesterNumbers(); // Update semester numbers when a semester is deleted
+                };
+                semesterDiv.appendChild(deleteSemesterButton);
+
+                // Update the number of semesters input value
+                numSemestersInput.value = semestersContainer.children.length + 1;
+
+                // Append the new semester div to the container
+                semestersContainer.appendChild(semesterDiv);
+
+                // Disable the "Add Semester" button if the maximum limit is reached
+                if (semestersContainer.children.length >= maxSemesters) {
+                    document.getElementById('add-semester-button').disabled = true;
+                }
+            }
+        }
+
+        function addSubject(container, semester) {
+            var subjectDiv = document.createElement('div');
+            subjectDiv.className = 'subject-container';
+
+            var subjectNameInput = document.createElement('input');
+            subjectNameInput.type = 'text';
+            subjectNameInput.name = 'semester' + semester + '_subject_names[]';
+            subjectNameInput.placeholder = 'Subject Name';
+
+            var gradesInput = document.createElement('input');
+            gradesInput.type = 'text';
+            gradesInput.name = 'semester' + semester + '_grades[]';
+            gradesInput.placeholder = 'Grades';
+            gradesInput.oninput = function() {
+                this.value = this.value.replace(/[^0-9]/g, ''); // Allow only digits
+                if (parseInt(this.value) > 10) {
+                    this.value = '10'; // Limit maximum grade to 10
+                }
+            };
+
+            var creditsInput = document.createElement('input');
+            creditsInput.type = 'text';
+            creditsInput.name = 'semester' + semester + '_credits[]';
+            creditsInput.placeholder = 'Credits';
+            creditsInput.oninput = function() {
+                this.value = this.value.replace(/[^0-9]/g, ''); // Allow only digits
+                if (parseInt(this.value) > 5) {
+                    this.value = '5'; // Limit maximum credits to 5
+                }
+            };
+
+            var deleteButton = document.createElement('button');
+            deleteButton.type = 'button';
+            deleteButton.className = 'delete-subject';
+            deleteButton.textContent = 'X';
+            deleteButton.onclick = function () {
+                container.removeChild(subjectDiv);
+            };
+
+            subjectDiv.appendChild(subjectNameInput);
+            subjectDiv.appendChild(gradesInput);
+            subjectDiv.appendChild(creditsInput);
+            subjectDiv.appendChild(deleteButton);
+
+            container.appendChild(subjectDiv);
+        }
+
+        function updateSemesterNumbers() {
+            var semestersContainer = document.getElementById('semesters-container');
+            var semesterBlocks = semestersContainer.getElementsByClassName('semester-block');
+
+            for (var i = 0; i < semesterBlocks.length; i++) {
+                semesterBlocks[i].getElementsByTagName('h2')[0].textContent = 'Semester ' + (i + 1);
+            }
+        }
+    </script>
+</body>
+</html>
