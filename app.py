@@ -11,7 +11,7 @@ from chatbot import ChatBot
 
 # Initialize Flask app
 app = Flask(__name__)
-app.secret_key = 'This is key for python leave it likt this'
+app.secret_key = 'IzaSyB6bQY2PYnlwcmBhKnAWc59i1KNwuhLGX8'
 
 
 # app = Flask(__name__)
@@ -42,14 +42,6 @@ def send_message():
         return jsonify({'error': str(e)})  # Return JSON response for errors
 
 
-'''def send_message_to_gemini(message):
-    try:
-        response = model.generate_content(prompt=message, max_length=50)
-        return response.text
-    except Exception as e:
-        logging.error(f"Error occurred while generating response: {e}")
-        return None
-'''
 
 # Function to create users table
 def create_users_table():
@@ -82,22 +74,6 @@ create_users_table()
 def show_chatbot_page():
     return render_template('chatbot.html')
 
-# Route to send message to Gemini AI
-'''
-@app.route('/send-message', methods=['POST'])
-def send_message():
-    if request.method == 'POST':
-        message = request.form.get('message')
-        if message is None:
-            abort(400)
-        # Log the message before sending it to the Gemini API
-        logging.info(f"Sending message to Google Gemini API: {message}")
-        # Send the message to the Gemini API and get the response
-        response = send_message_to_gemini(message)
-        # Log the response from the Gemini API
-        logging.info(f"Response from Google Gemini API: {response}")
-        return jsonify({'response': response})
-'''
 # Route for user login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -227,6 +203,69 @@ def eda():
 def eda_result():
     # Placeholder for EDA result
     return render_template('eda_result.html', title='EDA Result')
+
+
+
+@app.route('/gpa',methods=['GET', 'POST'])
+def gpa_calculator():
+    return render_template('gpa.html',title='GPA Calculator')
+
+@app.route('/result')
+def result():
+    return render_template("result.html",title='resulthtml')
+
+def calculate_sgpa(grades, credits):
+    total_points = sum(grades[i] * credits[i] for i in range(len(grades)))
+    total_credits = sum(credits)
+
+    if total_credits == 0:
+        return 0  # Return 0 if total credits are zero
+
+    sgpa = total_points / total_credits
+    return sgpa
+
+def calculate_cgpa(sgpa_list, credits_list):
+    total_points = sum(sgpa_list[i] * credits_list[i] for i in range(min(len(sgpa_list), len(credits_list))))
+    total_credits = sum(credits_list)
+
+    if total_credits == 0:
+        return 0  # Return 0 if total credits are zero
+
+    cgpa = total_points / total_credits
+    return cgpa
+
+def cgpa_to_percentage(cgpa):
+    percentage_equivalence = (cgpa - 0.5) * 10
+    return percentage_equivalence
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        num_semesters = int(request.form['num_semesters'])
+
+        all_sgpa = []
+        all_credits = []
+
+        for semester in range(1, num_semesters + 1):
+            semester_grades = list(map(int, request.form.getlist(f'semester{semester}_grades[]')))
+            semester_credits = list(map(int, request.form.getlist(f'semester{semester}_credits[]')))
+
+            sgpa = calculate_sgpa(semester_grades, semester_credits)
+            all_sgpa.append(sgpa)
+            all_credits.extend(semester_credits)
+
+        print("All SGPA:", all_sgpa)
+        print("All Credits:", all_credits)
+
+        cgpa = calculate_cgpa(all_sgpa, all_credits)
+        percentage_equivalence = cgpa_to_percentage(cgpa)
+
+        print("CGPA:", cgpa)
+        print("Percentage Equivalence:", percentage_equivalence)
+
+        return render_template('result.html', cgpa=cgpa, percentage_equivalence=percentage_equivalence, semester_sgpa=all_sgpa, num_semesters=num_semesters)
+
+    return render_template('gpa.html')
 
 if __name__ == '__main__':
     app.run(debug=True,port=9000)
